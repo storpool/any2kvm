@@ -202,7 +202,7 @@ int main(int argc, char *argv[])
 					else if( type == 3 )
 					{
 						uint64_t offset = ((tbl[j] & 0x0fff000000000000) >> 48) | ((tbl[j] & 0xffffffffffff) << 12);
-						const int fileOffset = hdr->grains_offset * 512ull + offset * 8 * 512;
+						const uint64_t fileOffset = hdr->grains_offset * 512ull + offset * 8 * 512;
 						fprintf(stderr, "vo %lu file addr %lu\n", virtualOffset, fileOffset);
 						iovec[iovecPtr].iov_base = (void*)ptr + fileOffset;
 					}
