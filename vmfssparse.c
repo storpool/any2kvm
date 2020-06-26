@@ -134,8 +134,7 @@ int main(int argc, char *argv[])
 
 
 	const uint32_t *gDir = (void *) hdr + hdr->gdOffset * 512;
-	unsigned numtbls = hdr->numSectors / GRAINS_PER_TABLE;
-	printf("Number of tables: %u\n", numtbls);
+	printf("Number of tables: %u\n", hdr->numGDEntries);
 
 
 	uint64_t lastAddr = 0;
@@ -143,7 +142,7 @@ int main(int argc, char *argv[])
 	struct iovec iovec[iovecSize];
 	unsigned iovecPtr = 0;
 
-	for(unsigned i=0; i< numtbls; i++ )
+	for(unsigned i=0; i < hdr->numGDEntries; i++ )
 	{
 		uint32_t tblOffset = gDir[i];
 		if (tblOffset)
